@@ -1,0 +1,15 @@
+---
+
+# Install with: ansible-galaxy install -r provisioning/requirements.yml --ignore-errors --force
+
+- src: rvm_io.ruby
+- src: geerlingguy.mysql
+- src: geerlingguy.git
+- src: geerlingguy.apache
+- src: geerlingguy.nodejs
+- src: geerlingguy.ntp
+- src: geerlingguy.redis
+- src: Stouts.mongodb
+- src: geerlingguy.java
+- src: avanov.pyenv
+- src: geerlingguy.nginx
