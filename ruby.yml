@@ -1,0 +1,11 @@
+---
+
+# https://github.com/rvm/rvm1-ansible
+
+rvm1_rubies:
+  - 'ruby-2.4.0'
+# Removed --auto-dotfiles
+rvm1_install_flags: '--user-install'
+# User to install rvm for
+rvm1_user: "{{ ansible_ssh_user }}"
+rvm1_install_path: "{{ users_home }}/.rvm"

@@ -1,0 +1,47 @@
+---
+- hosts: all
+  become: yes
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ config_dir }}/config.yml"
+        - "{{ config_dir }}/local.config.yml"
+
+    # apt-get update if cache is older than 3 hours
+    - name: check apt last update
+      stat: path=/var/cache/apt
+      register: apt_cache_stat
+    - name: update apt if needed
+      apt: update_cache=yes
+      when: ansible_date_time.epoch|float - apt_cache_stat.stat.mtime > 60*60*3
+
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository: repo='ppa:openjdk-r/ppa'
+      when: java_enabled
+
+  roles:
+    # Services
+    - geerlingguy.ntp
+    - { role: geerlingguy.redis, when: redis_enabled }
+    - { role: geerlingguy.mysql, when mysql_enabled }
+    - { role: Stouts.mongodb, when mongodb_enabled }
+    - { role: geerlingguy.apache, when apache_enabled }
+    - { role: geerlingguy.nginx, when nginx_enabled }
+
+    # Applications
+    - geerlingguy.git
+
+    # Languages
+    - { role: geerlingguy.nodejs, when: nodejs_enabled }
+    - { role: rvm_io.ruby, when: ruby_enabled }
+    - { role: geerlingguy.java, when: java_enabled }
+    - { role: avanov.pyenv, when: python_enabled }
+
+  tasks:
+    - name: Install zsh
+      apt:
+        name: zsh
+        state: latest
+        update_cache: yes
+

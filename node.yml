@@ -1,0 +1,14 @@
+---
+
+# https://github.com/geerlingguy/ansible-role-nodejs
+
+nodejs_version: "6.x"
+nodejs_install_npm_user: "{{ ansible_ssh_user }}"
+
+npm_config_prefix: "{{ users_home }}/.npm-global"
+
+nodejs_npm_global_packages:
+  - name: eslint
+  - name: grunt-cli
+  - name: coffee-script
+  - name: tern

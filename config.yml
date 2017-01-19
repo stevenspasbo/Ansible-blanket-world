@@ -1,2 +1,51 @@
 ---
 
+vagrant_box: 'ubuntu/trusty64'
+
+# Network
+private_ip: '10.100.10.100'
+vagrant_hostname: 'devbox.local'
+
+# Hardware
+vagrant_memory: 1024
+vagrant_cpus: 2
+
+# NTP
+ntp_enabled: true
+include: 'ntp.yml'
+
+apache_enabled: true
+
+redis_enabled: true
+
+nginx_enabled: true
+
+# Account settings
+ansible_ssh_user: vagrant
+password: 'p4ssw0rd'
+users_home: "/home/{{ ansible_ssh_user }}"
+
+# Mongodb
+mongodb_enabled: true
+include: 'mongodb.yml'
+
+# NodeJS
+nodejs_enabled: true
+include: 'node.yml'
+
+# Ruby
+ruby_enabled: true
+include: 'ruby.yml'
+
+# Mysql
+mysql_enabled: true
+include: 'mysql.yml'
+
+# Java
+java_enabled: true
+java_packages:
+  - openjdk-8-jdk
+
+# Python
+python_enabled: true
+include: 'python.yml'

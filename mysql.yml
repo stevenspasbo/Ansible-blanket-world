@@ -1,0 +1,10 @@
+---
+
+# https://github.com/geerlingguy/ansible-role-mysql
+
+mysql_root_home: "{{ users_home }}"
+mysql_root_username: "{{ ansible_ssh_user }}"
+mysql_root_password: "{{ password }}"
+
+mysql_root_password_update: yes
+mysql_enabled_on_startup: yes

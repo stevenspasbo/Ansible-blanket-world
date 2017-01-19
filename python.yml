@@ -1,0 +1,14 @@
+---
+
+# https://github.com/avanov/ansible-galaxy-pyenv
+
+pyenv_path: "{{ users_home }}/.pyenv"
+pyenv_owner: "{{ ansible_ssh_user }}"
+pyenv_python_versions:
+  - "2.7.13"
+  - "3.6.0"
+pyenv_virtualenvs:
+  - venv_name: "Latest v2"
+    py_version: "2.7.13"
+  - venv_name: "Latest v3"
+    py_version: "3.6.0"
